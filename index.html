@@ -10,7 +10,53 @@
     
 <script>
     function computerPlay(){
+        let rand = Math.floor(Math.random() * 3);  
+        if (rand == 0) {
+            return "Rock"
+        } else if (rand == 1) {
+            return "Paper"
+        } else {
+            return "Scissor"
+        }    
+    }
+
+    function userPrompt(){
+        text = "Choose rock, paper, or scissor"
+        input = window.prompt(text)
+        return input
+    }
+
+    function playRound(PlayerSelection=userPrompt(), computerSelection=computerPlay()){
+        let playerInput = PlayerSelection.toLowerCase()
+        let computerInput = computerSelection.toLowerCase()
         
+        let win = "You win, " + playerInput + " beats " + computerInput
+        let lose = "You lose, " + computerInput + " beats " + playerInput
+        let tie = "Tie you both picked " + computerInput
+
+        switch (true){
+            case(playerInput == computerInput):
+                return tie
+                break
+            case(playerInput == "rock" && computerInput == "scissor"):
+                return win
+                break
+            case(playerInput == "paper" && computerInput == "rock"):
+                return win
+                break
+            case(playerInput == "scissor" && computerInput == "paper"):
+                return win
+                break
+            default:
+                return lose
+        }
+    }
+
+    function game() {
+        for (let index = 0; index < 5; index++) {
+            console.log(playRound())
+            
+        }
     }
 </script>
 
